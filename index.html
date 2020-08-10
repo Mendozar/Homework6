@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Weather Dashboard</title>
+</head>
+
+<!-- AS A traveler
+I WANT to see the weather outlook for multiple cities
+SO THAT I can plan a trip accordingly -->
+
+<body>
+
+    <!--Navbar-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 text-center bg-dark text-light">
+                <h1>Weather Dashboard</h1>
+            </div>
+        </div>
+    </div>
+
+    <!--Below the Navbar-->
+    <div class="container-fluid">
+        <div class="row justify-content-around">
+
+            <!--Searchbar and history-->
+            <div class="col-3 card bg-light mt-2">
+                <div class="form-inline mt-3">
+                    <h3>Search for a City:</h3>
+                    <input class="ml-5" id="city" type="text" placeholder="Search">
+                    <button class="btn btn-primary ml-5" id="submit-city" type="submit">
+                        <span class="glyphicon glyphicon-search"></span>Search
+                    </button>
+                </div>
+
+                <ul class="mr-5 mt-2" id="search-history"></ul>
+
+                <button  id="clear-history">Clear History</button>
+            </div>
+
+
+            <!--To the right of the Searchbar and history-->
+            <div class="col-7 mt-4">
+
+                <!--Current weather card. Prominently featured.-->
+                <div class="row" id="current-weather" >
+                    <div class="col-7" >
+                        <h3>
+                            <span id = "current-city"></span>
+                            <img id="weather-img" src="">
+                        </h3> 
+                        
+                        <p>Temperature: 
+                            <span id="temperature"></span>
+                        </p>
+                        
+                        <p>Humidity: 
+                            <span id="humidity"></span>
+                        </p>
+                        
+                        <p>Wind Speed: 
+                            <span id="windspeed"></span>
+                        </p>
+                    </div>
+                </div>
+                
+                <!--The 5 day forecast for the selected city.-->
+                <h3 class="mt-5 mb-5">5 Day Forecast: </h3>
+                    
+                    <div class="card-deck">
+
+                        <!--Tomorrow-->    
+                        <div class="card bg-primary">
+                            <div id="day-1" class="card-body p-2">
+                                    <h6 class="card-date"></h6>
+                                    <img class = "weather-icon">
+                                    <p class = "weather-temp"></p>
+                                    <p class = "weather-humidity"></p>
+
+                            </div>
+                        </div>
+
+                        <!--Two days from now-->    
+                        <div class="card bg-primary">
+                            <div id="day-2" class="card-body p-2">
+                                    <h6 class="card-date"></h6>
+                                    <img class = "weather-icon">
+                                    <p class = "weather-temp"></p>
+                                    <p class = "weather-humidity"></p>
+
+                            </div>
+                        </div>
+
+                        <!--Three days from now-->    
+                        <div class="card bg-primary">
+                            <div id="day-3" class="card-body p-2">
+                                    <h6 class="card-date"></h6>
+                                    <img class = "weather-icon">
+                                    <p class = "weather-temp"></p>
+                                    <p class = "weather-humidity"></p>
+
+                            </div>
+                        </div>
+
+                        <!--Four days from now-->    
+                        <div class="card bg-primary">
+                            <div id="day-4" class=" card-body p-2">
+                                    <h6 class="card-date"></h6>
+                                    <img class = "weather-icon">
+                                    <p class = "weather-temp"></p>
+                                    <p class = "weather-humidity"></p>
+
+                            </div>
+                        </div>
+
+                        <!--Five days from now-->    
+                        <div class="card bg-primary">
+                            <div id="day-5" class="card-body p-2">
+                                    <h6 class="card-date"></h6>
+                                    <img class = "weather-icon">
+                                    <p class = "weather-temp"></p>
+                                    <p class = "weather-humidity"></p>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+            </div>
+                
+                
+        </div>  
+    </div>
+        
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<script src="main.js"></script>
+</html>
