@@ -2,7 +2,7 @@
 
 function openDashboard() {
     
-    //Open Weather API Key
+    //Open Weather API Key.
     const APIKey = "6c89694707ac1af1ddc9db51c91da689";
 
     //Store the DOM path to the elements in the Search section.
@@ -11,14 +11,14 @@ function openDashboard() {
     var clearEl = document.getElementById("clear-history");
     var historyEl = document.getElementById("history");
 
-    //Store the previous city searches to localstorage
+    //Store the previous city searches to localstorage.
     var searchHistory = JSON.parse(localStorage.getItem("search")) || [];
 
     //Store the DOM path to the elements for the selected city's current weather metrics.
     var nameEl = document.getElementById("city-name");
     var currentPicEl = document.getElementById("current-pic");
     var currentTempEl = document.getElementById("temperature");
-    var currentHumidityEl = document.getElementById("humidity");4
+    var currentHumidityEl = document.getElementById("humidity");
     var currentWindEl = document.getElementById("wind-speed");
     var currentUVEl = document.getElementById("UV-index");
 
@@ -78,7 +78,8 @@ function openDashboard() {
         //the conditions are favorable, moderate, or severe
 
             response.data = response;
-            //Display the UV Index for the selected city on the current day in the UV Div
+            //Display the UV Index for the selected city on the 
+            //current day in the UV Div via a newly created span
             var UVIndex = document.createElement("span");
             UVIndex.setAttribute("class","badge badge-danger");
             UVIndex.innerHTML = response.data[0].value;
@@ -125,7 +126,7 @@ function openDashboard() {
 
                 //Populate a <p> with that Date, Month and Year
                 var forecastDateEl = document.createElement("p");
-                forecastDateEl.setAttribute("class","mt-3 mb-0 forecast-date");
+                forecastDateEl.setAttribute("class","forecast-date");
                 forecastDateEl.innerHTML = forecastMonth + "/" + forecastDay + "/" + forecastYear;
                 forecastEls[i].append(forecastDateEl);
                 
