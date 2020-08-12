@@ -47,6 +47,10 @@ function openDashboard() {
             //an icon representation of weather conditions, the temperature, 
             //the humidity, the wind speed, and the UV index
             
+            //Reveal the currentCityInfoDiv.
+            var currentCityInfoDiv = document.getElementById("currentCityInfo");
+            currentCityInfoDiv.style.display = "block";
+
             //Update the section showing the current day's weather attributes for the currently selected city.
             chosenCityName.innerHTML = response.name + " (" + month + "/" + day + "/" + year + ") ";
             var weatherPic = response.weather[0].icon;
