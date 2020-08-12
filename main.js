@@ -6,21 +6,21 @@ function openDashboard() {
     const APIKey = "6c89694707ac1af1ddc9db51c91da689";
 
     //Store the DOM path to the elements in the Search section.
-    var inputEl = document.getElementById("city-input");
-    var searchEl = document.getElementById("search-button");
-    var clearEl = document.getElementById("clear-history");
-    var historyEl = document.getElementById("history");
+    var cityInput = document.getElementById("city-input");
+    var searchButton = document.getElementById("search-button");
+    var clearButton = document.getElementById("clear-history");
+    var searchHistoryDiv = document.getElementById("history");
 
     //Store the previous city searches to localstorage.
     var searchHistory = JSON.parse(localStorage.getItem("search")) || [];
 
     //Store the DOM path to the elements for the selected city's current weather metrics.
-    var nameEl = document.getElementById("city-name");
-    var currentPicEl = document.getElementById("current-pic");
-    var currentTempEl = document.getElementById("temperature");
-    var currentHumidityEl = document.getElementById("humidity");
-    var currentWindEl = document.getElementById("wind-speed");
-    var currentUVEl = document.getElementById("UV-index");
+    var chosenCityName = document.getElementById("city-name");
+    var chosenCityPic = document.getElementById("current-pic");
+    var chosenCityTemp = document.getElementById("temperature");
+    var chosenCityHumidity = document.getElementById("humidity");
+    var chosenCityWind = document.getElementById("wind-speed");
+    var chosenCityUV = document.getElementById("UV-index");
 
 
     function returnWeather(cityName) {
@@ -48,13 +48,13 @@ function openDashboard() {
             //the humidity, the wind speed, and the UV index
             
             //Update the section showing the current day's weather attributes for the currently selected city.
-            nameEl.innerHTML = response.name + " (" + month + "/" + day + "/" + year + ") ";
+            chosenCityName.innerHTML = response.name + " (" + month + "/" + day + "/" + year + ") ";
             var weatherPic = response.weather[0].icon;
-            currentPicEl.setAttribute("src","https://openweathermap.org/img/wn/" + weatherPic + "@2x.png");
-            currentPicEl.setAttribute("alt",response.weather[0].description);
-            currentTempEl.innerHTML = "Temperature: " + convertTemp(response.main.temp) + " &#176F";
-            currentHumidityEl.innerHTML = "Humidity: " + response.main.humidity + "%";
-            currentWindEl.innerHTML = "Wind Speed: " + response.wind.speed + " MPH";
+            chosenCityPic.setAttribute("src","https://openweathermap.org/img/wn/" + weatherPic + "@2x.png");
+            chosenCityPic.setAttribute("alt",response.weather[0].description);
+            chosenCityTemp.innerHTML = "Temperature: " + convertTemp(response.main.temp) + " &#176F";
+            chosenCityHumidity.innerHTML = "Humidity: " + response.main.humidity + "%";
+            chosenCityWind.innerHTML = "Wind Speed: " + response.wind.speed + " MPH";
 
         //Store the lat and long of the city
         var lat = response.coord.lat;
@@ -80,8 +80,8 @@ function openDashboard() {
             var UVIndex = document.createElement("span");
             UVIndex.setAttribute("class","badge badge-danger");
             UVIndex.innerHTML = response[0].value;
-            currentUVEl.innerHTML = "UV Index: ";
-            currentUVEl.append(UVIndex);
+            chosenCityUV.innerHTML = "UV Index: ";
+            chosenCityUV.append(UVIndex);
         });
 
         //WHEN I view future weather conditions for that city
@@ -148,10 +148,10 @@ function openDashboard() {
     }
 
     //When the search button is clicked
-    searchEl.addEventListener("click",function() {
+    searchButton.addEventListener("click",function() {
 
         //Store the string from the search field
-        var searchTerm = inputEl.value;
+        var searchTerm = cityInput.value;
         
         //Run the returnWeather function with the searchTerm input.
         returnWeather(searchTerm);
@@ -163,12 +163,13 @@ function openDashboard() {
     })
 
     //When the clear history button is clicked
-    clearEl.addEventListener("click",function() {
+    clearButton.addEventListener("click",function() {
 
         //Clear out the searchHistory array
         searchHistory = [];
         //Run the renderSearchHistory Function
         renderSearchHistory();
+
     })
 
     //Convert the temperature from Kelvin to Fahrenheit
@@ -180,7 +181,7 @@ function openDashboard() {
     function renderSearchHistory() {
         
         //Start by updating the search list to blank text string.
-        historyEl.innerHTML = "";
+        searchHistoryDiv.innerHTML = "";
 
         //Display each element within the searchHistory array.
         for (var i=0; i < searchHistory.length; i++) {
@@ -201,7 +202,7 @@ function openDashboard() {
             })
 
             //Append all of the items searched
-            historyEl.append(searchItemHistory);
+            searchHistoryDiv.append(searchItemHistory);
         }
     }
 
