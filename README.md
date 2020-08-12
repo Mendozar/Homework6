@@ -1,14 +1,14 @@
-<h1>Weather Dashboard<h1>
+<h1>Weather Dashboard</h1>
 
-Deployed Application:
+<h2>Deployed Application:</h2>
 
 https://mendozar.github.io/Homework6/
 
-UX GIF:
+<h2>UX GIF:</h2>
 
 https://drive.google.com/file/d/1YitR_CZW0WX1G1kj25Ymsw4VA7WJlyVf/view
 
-Built With:
+<h2>Built With:</h2>
 
 HTML
 CSS
@@ -16,13 +16,13 @@ OpenWeathermap api
 Javascript
 Bootstrap
 
-User Story:
+<h2>User Story:</h2>
 
 AS A traveler
 I WANT to see the weather outlook for multiple cities
 SO THAT I can plan a trip accordingly
 
-Acceptance Criteria:
+<h2>Acceptance Criteria:</h2>
 
 GIVEN a weather dashboard with form inputs
 WHEN I search for a city
