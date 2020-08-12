@@ -4,7 +4,7 @@
 
 https://mendozar.github.io/Homework6/
 
-<h2>UX GIF:</h2>
+<h2>UX Video:</h2>
 
 https://drive.google.com/file/d/1YitR_CZW0WX1G1kj25Ymsw4VA7WJlyVf/view
 
