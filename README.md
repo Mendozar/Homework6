@@ -1,3 +1,5 @@
+<h1>Weather Dashboard<h1>
+
 Deployed Application:
 
 https://mendozar.github.io/Homework6/
