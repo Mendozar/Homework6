@@ -102,14 +102,19 @@ function openDashboard() {
             //Display forecast for the next 5 days underneath the section displayin current conditions
 
             //Store the query selector for all of the 5 divs set aside for future forecasts.
-            var forecastEls = document.querySelectorAll(".forecast");
+            var forecastDivs = document.querySelectorAll(".forecast");
+
+            //Reveal the 5 Day Forecast title once search is selected.
+            var fiveDayForecastDiv = document.getElementById("5-day-forecast");
+            fiveDayForecastDiv.style.display = "block";
+
 
             //For each of the 5 day forecast divs
             //Display the contents of the respective day's forecast metrics
-            for (i=0; i<forecastEls.length; i++) {
+            for (i=0; i<forecastDivs.length; i++) {
 
                 //Start by setting each text string to blank
-                forecastEls[i].innerHTML = "";
+                forecastDivs[i].innerHTML = "";
 
                 //Calculate the index needed for each future date
                 var forecastIndex = i*8 + 4;
@@ -121,26 +126,26 @@ function openDashboard() {
                 var forecastYear = forecastDate.getFullYear();
 
                 //Populate a <p> with that Date, Month and Year
-                var forecastDateEl = document.createElement("p");
-                forecastDateEl.setAttribute("class","forecast-date");
-                forecastDateEl.innerHTML = forecastMonth + "/" + forecastDay + "/" + forecastYear;
-                forecastEls[i].append(forecastDateEl);
+                var forecastDatePtags = document.createElement("p");
+                forecastDatePtags.setAttribute("class","forecast-date");
+                forecastDatePtags.innerHTML = forecastMonth + "/" + forecastDay + "/" + forecastYear;
+                forecastDivs[i].append(forecastDatePtags);
                 
                 //Populate an <img> with the icon for that particular day and include the icon for the forcasted weather that date
-                var forecastWeatherEl = document.createElement("img");
-                forecastWeatherEl.setAttribute("src","https://openweathermap.org/img/wn/" + response.list[forecastIndex].weather[0].icon + "@2x.png");
-                forecastWeatherEl.setAttribute("alt",response.list[forecastIndex].weather[0].description);
-                forecastEls[i].append(forecastWeatherEl);
+                var forecastWeatherImg = document.createElement("img");
+                forecastWeatherImg.setAttribute("src","https://openweathermap.org/img/wn/" + response.list[forecastIndex].weather[0].icon + "@2x.png");
+                forecastWeatherImg.setAttribute("alt",response.list[forecastIndex].weather[0].description);
+                forecastDivs[i].append(forecastWeatherImg);
                 
                 //Populate a <p> with the forecasted temperature that date.
-                var forecastTempEl = document.createElement("p");
-                forecastTempEl.innerHTML = "Temp: " + convertTemp(response.list[forecastIndex].main.temp) + " &#176F";
-                forecastEls[i].append(forecastTempEl);
+                var forecastTempPtags = document.createElement("p");
+                forecastTempPtags.innerHTML = "Temp: " + convertTemp(response.list[forecastIndex].main.temp) + " &#176F";
+                forecastDivs[i].append(forecastTempPtags);
                 
                 //Populate a <p> with the forecasted humidity that date.
-                var forecastHumidityEl = document.createElement("p");
-                forecastHumidityEl.innerHTML = "Humidity: " + response.list[forecastIndex].main.humidity + "%";
-                forecastEls[i].append(forecastHumidityEl);
+                var forecastHumidityPtags = document.createElement("p");
+                forecastHumidityPtags.innerHTML = "Humidity: " + response.list[forecastIndex].main.humidity + "%";
+                forecastDivs[i].append(forecastHumidityPtags);
 
                 }
             })
@@ -153,6 +158,9 @@ function openDashboard() {
         //Store the string from the search field
         var searchTerm = cityInput.value;
         
+        //Empty out the search field
+        $("city-input").empty();
+
         //Run the returnWeather function with the searchTerm input.
         returnWeather(searchTerm);
         
@@ -162,14 +170,18 @@ function openDashboard() {
         renderSearchHistory();
     })
 
-    //When the clear history button is clicked
-    clearButton.addEventListener("click",function() {
 
+    //When the clear history button is clicked, 
+    //empty out the search history array and the local storage.
+    clearButton.addEventListener("click",function() {
+        //Empty the text with the history div
+        $("#history").empty();
         //Clear out the searchHistory array
         searchHistory = [];
+        //Update local storage to reflect this empty sear
+        localStorage.setItem("search", JSON.stringify(searchHistory));
         //Run the renderSearchHistory Function
         renderSearchHistory();
-
     })
 
     //Convert the temperature from Kelvin to Fahrenheit
@@ -179,7 +191,7 @@ function openDashboard() {
 
     //Display the previous searchTerms below the search field.
     function renderSearchHistory() {
-        
+
         //Start by updating the search list to blank text string.
         searchHistoryDiv.innerHTML = "";
 
@@ -189,8 +201,8 @@ function openDashboard() {
             //Create an input element with readonly text
             //Display the value in each element of the searchHistory array
             var searchItemHistory = document.createElement("input");
-            searchItemHistory.setAttribute("type","text");
-            searchItemHistory.setAttribute("readonly",true);
+            searchItemHistory.setAttribute("type", "text");
+            searchItemHistory.setAttribute("readonly", true);
             searchItemHistory.setAttribute("class", "form-control d-block");
             searchItemHistory.setAttribute("value", searchHistory[i]);
 
