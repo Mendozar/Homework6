@@ -35,7 +35,7 @@ function openDashboard() {
           })
         .then(function(response){
 
-            response.data = response;
+            //response.data = response;
             //Store today's date, day, month & year.
             var currentDate = new Date(response.dt*1000);
             var day = currentDate.getDate();
@@ -153,6 +153,7 @@ function openDashboard() {
 
     //When the search button is clicked
     searchEl.addEventListener("click",function() {
+
         //Store the string from the search field
         var searchTerm = inputEl.value;
         
@@ -187,20 +188,22 @@ function openDashboard() {
         //Display each element within the searchHistory array.
         for (var i=0; i<searchHistory.length; i++) {
             
-            //Store the DOM path to the search history
+            //Create an input element with readonly text
+            //Display the value in each element of the searchHistory array
             var historyItem = document.createElement("input");
             historyItem.setAttribute("type","text");
             historyItem.setAttribute("readonly",true);
-            historyItem.setAttribute("class", "form-control d-block bg-white");
+            historyItem.setAttribute("class", "form-control d-block");
             historyItem.setAttribute("value", searchHistory[i]);
 
-            //When the Clear History button is clicked
+            //When any of the cities in the searchHistory is selected
+            //Update the current and 5 day forecasts.
             historyItem.addEventListener("click",function() {
                 //Run the returnWeather function with the value in historyItem
                 returnWeather(historyItem.value);
             })
 
-            //Display all of the items searched
+            //Append all of the items searched
             historyEl.append(historyItem);
         }
     }
